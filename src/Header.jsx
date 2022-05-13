@@ -1,5 +1,6 @@
 import React from "react";
 import logoPizza from "./assets/img/pizza-logo.svg";
+import Button from "./Button";
 
 function Header() {
   return (
@@ -10,6 +11,8 @@ function Header() {
           <div>
             <h1>React Pizza</h1>
             <p>самая вкусная пицца во вселенной</p>
+            <Button outline>1112</Button>
+            <Button>5555555</Button>
           </div>
         </div>
         <div className="header__cart">
