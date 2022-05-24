@@ -4,14 +4,15 @@ import React from "react";
 import { Header } from "./components";
 import { Cart, Home } from "./pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import axios from "axios";
 
 function App() {
   const [Pizzas, setPizzas] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("http://localhost:3000/db.json")
-      .then((resp) => resp.json())
-      .then((json) => setPizzas(json.pizzas));
+    axios.get("http://localhost:3000/db.json").then(({ data }) => {
+      setPizzas(data.pizzas);
+    });
   }, []);
 
   return (
