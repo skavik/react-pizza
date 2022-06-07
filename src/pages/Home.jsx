@@ -23,6 +23,7 @@ function Home() {
   const dispatch = useDispatch();
 
   const items = useSelector(({ pizzas }) => pizzas.items);
+  const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
 
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
@@ -40,9 +41,10 @@ function Home() {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {items.map((obj) => (
-          <PizzaBlock key={obj.id} {...obj} />
-        ))}
+        {isLoaded &&
+          items.map((obj) => (
+            <PizzaBlock key={obj.id} isLoading={true} {...obj} />
+          ))}
       </div>
     </div>
   );
