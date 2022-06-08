@@ -15,6 +15,7 @@ const filters = (state = intialState, action) => {
         ...state,
         category: action.payload,
       };
+    
 
     default:
       return state;
