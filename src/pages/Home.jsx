@@ -19,9 +19,9 @@ const categoryNames = [
 ];
 
 const sortItem = [
-  { name: "популярности", type: "popular" },
-  { name: "цене", type: "price" },
-  { name: "алфавиту", type: "alphabet" },
+  { name: "популярности", type: "popular", order: "desc" },
+  { name: "цене", type: "price", order: "desc" },
+  { name: "алфавиту", type: "name", order: "asc" },
 ];
 
 function Home() {
@@ -51,7 +51,11 @@ function Home() {
           onClickCategory={onSelectCategory}
           item={categoryNames}
         />
-        <SortPopup activeSortType={sortBy} item={sortItem} onclickSortType={onSelectSort}/>
+        <SortPopup
+          activeSortType={sortBy.type}
+          item={sortItem}
+          onclickSortType={onSelectSort}
+        />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">

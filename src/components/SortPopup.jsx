@@ -8,7 +8,7 @@ const SortPopup = React.memo(function SortPopup({
 }) {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
 
-  const activeName = item.find(obj => obj.type === activeSortType).name;
+  const activeName = item.find((obj) => obj.type === activeSortType).name;
 
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup);
@@ -59,7 +59,7 @@ const SortPopup = React.memo(function SortPopup({
                 <li
                   className={activeSortType === index ? "active" : ""}
                   onClick={() => {
-                    onSelectItem(obj.type);
+                    onSelectItem(obj);
                   }}
                   key={`${obj.type}_${index}`}
                 >
@@ -74,11 +74,11 @@ const SortPopup = React.memo(function SortPopup({
 });
 
 SortPopup.propTypes = {
- // activeSortType: PropTypes.string,
+  // activeSortType: PropTypes.string,
   item: PropTypes.arrayOf(PropTypes.object),
   onclickSortType: PropTypes.func,
 };
 
-SortPopup.defaultProps = { item: [], activeSortType: ''  };
+SortPopup.defaultProps = { item: [], activeSortType: "" };
 
 export default SortPopup;
