@@ -1,9 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+
 import logoPizza from "../assets/img/pizza-logo.svg";
 import Button from "./Button";
 
 function Header() {
+  const { totalPrice, totalCount } = useSelector(({ cart }) => ({
+    totalPrice: cart.totalPrice,
+    totalCount: cart.totalCount,
+  }));
+
   return (
     <div className="header">
       <div className="container">
@@ -18,7 +25,11 @@ function Header() {
         </NavLink>
         <div className="header__cart">
           <NavLink to="/cart">
-            <Button className="button--cart" />
+            <Button
+              className="button--cart"
+              totalPrice={totalPrice}
+              totalCount={totalCount}
+            />
           </NavLink>
         </div>
       </div>
