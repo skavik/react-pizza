@@ -6,15 +6,15 @@ const intialState = {
 
 const cart = (state = intialState, action) => {
   switch (action.type) {
-    case "SET_TOTEL_PRICE":
+    case "SET_PIZZA_CART":
       return {
         ...state,
-        totalPrice: action.payload,
-      };
-    case "SET_TOTEL_PRICE":
-      return {
-        ...state,
-        totalCount: action.payload,
+        items: {
+          [action.payload.id]: [
+            ...state.items[action.payload.id],
+            action.payload,
+          ],
+        },
       };
 
     default:

@@ -20,8 +20,8 @@ const categoryNames = [
 
 const sortItem = [
   { name: "популярности", type: "popular", order: "desc" },
-  { name: "цене", type: "price", order: "desc" },
-  { name: "алфавиту", type: "name", order: "asc" },
+  { name: "цене", type: "price", order: "asc" },
+  { name: "алфавиту", type: "name", order: "desc" },
 ];
 
 function Home() {
