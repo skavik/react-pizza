@@ -11,6 +11,8 @@ function Header() {
     totalCount: cart.totalCount,
   }));
 
+
+
   return (
     <div className="header">
       <div className="container">
@@ -61,7 +63,7 @@ function Header() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>{totalPrice}</span>
+              <span>{totalCount}</span>
             </Button>
           </NavLink>
         </div>
