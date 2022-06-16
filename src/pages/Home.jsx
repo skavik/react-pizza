@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setCategory, setSortBy } from "../redux/actions/filters";
 import { fetchPizzas } from "../redux/actions/pizzas";
+import { setPizzaToCart } from "../redux/actions/cart";
 
 const categoryNames = [
   "Мясные",
@@ -43,6 +44,10 @@ function Home() {
     dispatch(fetchPizzas(sortBy, category));
   }, [category, sortBy]);
 
+  const handelAddPizzaToCart = (obj) => {
+    dispatch(setPizzaToCart(obj));
+  };
+
   return (
     <div className="container">
       <div className="content__top">
@@ -62,9 +67,7 @@ function Home() {
         {isLoaded
           ? items.map((obj) => (
               <PizzaBlock
-                onClickAddPizza={(obj) => {
-                  console.log(obj);
-                }}
+                onClickAddPizza={handelAddPizzaToCart}
                 key={obj.id}
                 isLoading={true}
                 {...obj}
