@@ -5,9 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 function Cart() {
   const { items, totalCount, totalPrice } = useSelector(({ cart }) => cart);
 
-  const addedPizzas = Object.keys(items).map(key => {
-    return items[key][0]
-  })
+  const addedPizzas = Object.keys(items).map((key) => {
+    return items[key][0];
+  });
   return (
     <div className="container container--cart">
       <div className="cart">
@@ -86,13 +86,14 @@ function Cart() {
           </div>
         </div>
         <div className="content__items">
-
-          {
-            addedPizzas.map(obj => (
-              <CartItem name={obj.name} type={obj.type} size={obj.size} />
-            ))
-          }
-          
+          {addedPizzas.map((obj) => (
+            <CartItem
+              name={obj.name}
+              type={obj.type}
+              size={obj.size}
+              totalPrice={totalPrice}
+            />
+          ))}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">

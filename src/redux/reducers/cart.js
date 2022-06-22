@@ -7,15 +7,22 @@ const intialState = {
 const cart = (state = intialState, action) => {
   switch (action.type) {
     case "SET_PIZZA_CART":
+      getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
+
+      const currentPizzaItems = !state.items[action.payload.id]
+        ? [action.payload]
+        : [...state.items[action.payload.id], action.payload];
+
       const newItems = {
         ...state.items,
-        [action.payload.id]: !state.items[action.payload.id]
-          ? [action.payload]
-          : [...state.items[action.payload.id], action.payload],
+        [action.payload.id]: {
+          items: currentPizzaItems,
+          totalPrice: getTotalPrice(currentPizzaItems),
+        },
       };
 
-      const allPizzas = [].concat.apply([], Object.values(newItems))
-      const totalPrice = allPizzas.reduce((sum, obj) => obj.price + sum, 0)
+      const allPizzas = [].concat.apply([], Object.values(newItems));
+      const totalPrice = currentPizzaItems(allPizzas);
 
       return {
         ...state,
