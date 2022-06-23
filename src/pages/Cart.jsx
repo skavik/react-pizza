@@ -1,9 +1,10 @@
 import React from "react";
-import { CartItem } from "../components";
 import { useSelector, useDispatch } from "react-redux";
-import CartEmptyImg from "../assets/img/empty-cart.png";
+import { NavLink } from "react-router-dom";
 
-import { clearCart } from "../redux/actions/cart";
+import cartEmptyImg from "../assets/img/empty-cart.png";
+import { CartItem } from "../components";
+import { clearCart, removeCartItem } from "../redux/actions/cart";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -11,6 +12,12 @@ function Cart() {
   const onClearCart = () => {
     if (window.confirm("Ви дійсно хочете все очичтити?")) {
       dispatch(clearCart());
+    }
+  };
+
+  const onRemoveItem = (id) => {
+    if (window.confirm("Ви дійсно хочете удалити піцу?")) {
+      dispatch(removeCartItem(id));
     }
   };
 
@@ -106,6 +113,7 @@ function Cart() {
                 size={obj.size}
                 totalPrice={items[obj.id].totalPrice}
                 totalCount={items[obj.id].items.length}
+                onRemoveItem={onRemoveItem}
               />
             ))}
           </div>
@@ -119,8 +127,8 @@ function Cart() {
               </span>
             </div>
             <div className="cart__bottom-buttons">
-              <a
-                href="/"
+              <NavLink
+                to="/"
                 className="button button--outline button--add go-back-btn"
               >
                 <svg
@@ -140,7 +148,7 @@ function Cart() {
                 </svg>
 
                 <span>Вернуться назад</span>
-              </a>
+              </NavLink>
               <div className="button pay-btn">
                 <span>Оплатить сейчас</span>
               </div>
@@ -157,10 +165,10 @@ function Cart() {
             <br />
             Для того, чтобы заказать пиццу, перейди на главную страницу.
           </p>
-          <img src={CartEmptyImg} alt="Empty cart" />
-          <a href="/" className="button button--black">
+          <img src={cartEmptyImg} alt="Empty cart" />
+          <NavLink to="/" className="button button--black">
             <span>Вернуться назад</span>
-          </a>
+          </NavLink>
         </div>
       )}
     </div>

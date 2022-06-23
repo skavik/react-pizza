@@ -40,6 +40,16 @@ const cart = (state = intialState, action) => {
         totalCount: 0,
       };
 
+    case "REMOVE_CART_ITEM":
+      const newItemsPizza = {
+        ...state.items,
+      };
+      delete newItemsPizza[action.payload];
+      return {
+        ...state,
+        items: newItemsPizza,
+      };
+
     default:
       return state;
   }
