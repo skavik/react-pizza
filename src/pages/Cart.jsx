@@ -4,7 +4,13 @@ import { NavLink } from "react-router-dom";
 
 import cartEmptyImg from "../assets/img/empty-cart.png";
 import { CartItem } from "../components";
-import { clearCart, removeCartItem } from "../redux/actions/cart";
+import Button from "../components/Button";
+import {
+  clearCart,
+  removeCartItem,
+  plusCartItem,
+  minustCartItem,
+} from "../redux/actions/cart";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -20,6 +26,18 @@ function Cart() {
       dispatch(removeCartItem(id));
     }
   };
+
+  const onPlusItem = (id) => {
+    dispatch(plusCartItem(id));
+  };
+
+  const onMinusItem = (id) => {
+    dispatch(minustCartItem(id));
+  };
+
+  const onClickOrder = () => {
+
+  }
 
   const { items, totalCount, totalPrice } = useSelector(({ cart }) => cart);
 
@@ -115,6 +133,8 @@ function Cart() {
                 totalPrice={items[obj.id].totalPrice}
                 totalCount={items[obj.id].items.length}
                 onRemoveItem={onRemoveItem}
+                onPlus={onPlusItem}
+                onMinus={onMinusItem}
               />
             ))}
           </div>
@@ -150,16 +170,16 @@ function Cart() {
 
                 <span>Вернуться назад</span>
               </NavLink>
-              <div className="button pay-btn">
+              <Button onClick={onClickOrder} className="pay-btn">
                 <span>Оплатить сейчас</span>
-              </div>
+              </Button>
             </div>
           </div>
         </div>
       ) : (
         <div className="cart cart--empty">
           <h2>
-            Корзина пустая <icon>😕</icon>
+            Корзина пустая <i>😕</i>
           </h2>
           <p>
             Вероятней всего, вы не заказывали ещё пиццу.
